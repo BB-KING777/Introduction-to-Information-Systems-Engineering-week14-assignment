@@ -141,13 +141,12 @@ function initGame() {
 function initAudio() {
     try {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        loadMP3Music(); // MP3音楽を読み込み
+        loadMP3Music();
     } catch (e) {
         console.log('Audio not supported');
     }
 }
 
-// MP3音楽ファイルを読み込む関数
 async function loadMP3Music() {
     try {
         console.log('Loading music.mp3...');
@@ -163,7 +162,6 @@ async function loadMP3Music() {
     } catch (error) {
         console.error('MP3読み込みエラー:', error);
         console.log('Fallback to procedural music');
-        // MP3が読み込めない場合は元のプロシージャル音楽を使用
         mp3Buffer = null;
     }
 }
