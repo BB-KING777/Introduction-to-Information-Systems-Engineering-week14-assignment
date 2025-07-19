@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shuta's Digital Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Shuta's Digital Portfolio</h1>
+        <p>Computer Science Student | Retro Gaming Enthusiast | Hardware Explorer</p>
+    </header>
+
+    <nav>
+        <a href="index.html" class="active">HOME</a>
+        <a href="portfolio.html">PORTFOLIO</a>
+        <a href="trivia.html">TRIVIA</a>
+        <a href="game.html">GAME</a>
+    </nav>
+
+    <div class="container">
+        <aside class="left-sidebar">
+            <h3>Useful Study Links</h3>
+            <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web" target="_blank">MDN Web Docs</a></li>
+                <li><a href="https://www.w3schools.com/" target="_blank">W3Schools</a></li>
+                <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+                <li><a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a></li>
+                <li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h2>Welcome to My Digital Space</h2>
+            
+            <div class="intro-text">
+                <p><strong>Note:</strong> This is my Week 14 assignment portfolio for the Information Systems Engineering course at Ritsumeikan University. For my actual professional portfolio and project details, please visit my main website at <a href="https://my-digital-space-kappa.vercel.app/" target="_blank" style="color: #4a90e2; text-decoration: none; font-weight: 600;">my-digital-space-kappa.vercel.app</a></p>
+
+                <p>Hello! I'm Shuta Wakamiya, a computer science student at Ritsumeikan University with a passion for both cutting-edge technology and nostalgic gaming experiences. Currently, I'm studying in the College of Information Science and Engineering, where I explore the fascinating world of computer systems and hardware security.</p>
+
+                <p>My greatest passion lies in retro gaming, particularly with the Super Nintendo Entertainment System (SNES). There's something magical about the creativity and innovation that developers achieved within the hardware constraints of that era. I collect vintage CPUs and study how classic gaming consoles pushed the boundaries of their limited resources to create unforgettable experiences.</p>
+
+                <p>Beyond gaming, I'm deeply interested in hardware security and computer architecture. I work with FPGA boards to design custom CPU implementations and explore how modern security threats can target hardware components. I also enjoy hands-on projects like electronic circuits and motorcycle maintenance, which help me understand the bridge between mechanical and electronic systems.</p>
+
+                <p>When I'm not studying or coding, you can find me riding my motorcycles - a YZF-R25 and a classic 1995 Giorno. The mechanical precision required for motorcycle maintenance complements my interest in digital systems perfectly. Both worlds teach me about the importance of understanding systems at their fundamental level.</p>
+
+                <p>This portfolio website demonstrates my learning progress in web development technologies including HTML, CSS, and JavaScript. The trivia page features practical programming utilities that I find useful for my microcontroller and hardware projects.</p>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <h3>Contact Me</h3>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="submit">Submit</button>
+                    <button type="button" onclick="clearForm()">Clear</button>
+                </div>
+            </form>
+        </aside>
+    </div>
+
+    <footer>
+        <p>Created: July 2025 | 
+           <a href="https://my-digital-space-kappa.vercel.app/" target="_blank">Official Website</a> | 
+           <a href="https://github.com/shutawakamiya" target="_blank">GitHub</a> | 
+           <a href="https://linkedin.com/in/shutawakamiya" target="_blank">LinkedIn</a>
+        </p>
+    </footer>
+
+    <script>
+        function clearForm() {
+            document.getElementById('contact-form').reset();
+        }
+
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+        });
+    </script>
+</body>
+</html>
