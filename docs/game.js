@@ -141,96 +141,13 @@ function initGame() {
 function initAudio() {
     try {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        
-        // File Input要素を作成してMP3読み込みを試行
-        createFileInput();
-        
+        loadMP3Music(); // MP3音楽を読み込み
     } catch (e) {
         console.log('Audio not supported');
     }
 }
 
-// ファイル選択用のInput要素を作成
-function createFileInput() {
-    // 既存のファイル入力があれば削除
-    const existingInput = document.getElementById('musicFileInput');
-    if (existingInput) {
-        existingInput.remove();
-    }
-    
-    // ファイル入力要素を作成
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.id = 'musicFileInput';
-    fileInput.accept = 'audio/*';
-    fileInput.style.display = 'none';
-    document.body.appendChild(fileInput);
-    
-    // Musicボタンの近くに「MP3を選択」ボタンを追加
-    const musicBtn = document.getElementById('musicBtn');
-    if (musicBtn && !document.getElementById('selectMusicBtn')) {
-        const selectBtn = document.createElement('button');
-        selectBtn.id = 'selectMusicBtn';
-        selectBtn.textContent = 'MP3選択';
-        selectBtn.style.marginLeft = '10px';
-        selectBtn.onclick = () => fileInput.click();
-        musicBtn.parentNode.insertBefore(selectBtn, musicBtn.nextSibling);
-    }
-    
-    // ファイル選択時の処理
-    fileInput.addEventListener('change', handleFileSelect);
-}
-
-// ファイル選択処理
-async function handleFileSelect(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    
-    if (!file.type.startsWith('audio/')) {
-        alert('音声ファイルを選択してください');
-        return;
-    }
-    
-    try {
-        console.log('Loading selected music file:', file.name);
-        
-        // FileReaderを使用してArrayBufferとして読み込み
-        const arrayBuffer = await readFileAsArrayBuffer(file);
-        mp3Buffer = await audioContext.decodeAudioData(arrayBuffer);
-        
-        console.log('Music loaded successfully!', file.name);
-        
-        // ボタンのテキストを更新
-        const selectBtn = document.getElementById('selectMusicBtn');
-        if (selectBtn) {
-            selectBtn.textContent = '✓ ' + file.name.substring(0, 10);
-            selectBtn.style.backgroundColor = '#4CAF50';
-            selectBtn.style.color = 'white';
-        }
-        
-        // 自動で音楽開始
-        if (!musicPlaying) {
-            startMusic();
-        }
-        
-    } catch (error) {
-        console.error('音楽ファイル読み込みエラー:', error);
-        alert('音楽ファイルの読み込みに失敗しました');
-        mp3Buffer = null;
-    }
-}
-
-// FileをArrayBufferとして読み込む
-function readFileAsArrayBuffer(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = () => reject(reader.error);
-        reader.readAsArrayBuffer(file);
-    });
-}
-
-// MP3音楽ファイルを読み込む関数（HTTPサーバー用）
+// MP3音楽ファイルを読み込む関数
 async function loadMP3Music() {
     try {
         console.log('Loading music.mp3...');
@@ -246,6 +163,7 @@ async function loadMP3Music() {
     } catch (error) {
         console.error('MP3読み込みエラー:', error);
         console.log('Fallback to procedural music');
+        // MP3が読み込めない場合は元のプロシージャル音楽を使用
         mp3Buffer = null;
     }
 }
